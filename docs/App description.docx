@@ -1,0 +1,48 @@
+    Docker este o platformă open-source care automatizează dezvoltarea,
+implementarea și rularea aplicațiilor în containere. Un container este o
+unitate de software care include toate elementele necesare pentru a rula
+o aplicație, precum codul, bibliotecile, sistemul de fișiere și mediul de
+rulare. Containerele permit izolarea aplicațiilor și a dependențelor,
+făcându-le portabile și ușor de distribuit pe diverse sisteme și platforme.
+Docker permite dezvoltarea unei aplicatii portabile si scalabile.
+    
+    Portainer este un tool open-source de management al containerelor
+Docker și Kubernetes, care oferă o interfață grafică user-friendly și
+facilitează administrarea și monitorizarea infrastructurii bazate pe
+containere. Portainer simplifică procesul de management al containerelor
+și reduce complexitatea operațiunilor.
+
+    Keycloak este un server de autentificare și autorizare open-source,
+puternic și flexibil, care oferă suport pentru protocoale precum OpenID
+Connect, OAuth 2.0 și SAML 2.0. Acesta poate fi integrat cu ușurință într-o
+arhitectură bazată pe microservicii deoarece este compatibil cu Docker.
+
+    Kong este o platforma API Gateway de management care faciliteaza
+comunicatia intre microservicii si API-uri. El ofera posibilitatea de a
+lega microserviciile aplicatiei prin puncte de acces centralizate si
+securizate si de a administra si monitoriza traficul dintre ele.
+
+    Adminer (anterior cunoscut sub numele de phpMinAdmin) este un tool
+open-source de management pentru baze de date, scris în PHP. Oferă o
+interfață web simplă și ușor de utilizat pentru a administra diferite
+sisteme de management al bazelor de date: MySQL / PostgreSQL / MongoDB.
+    
+    ELK Stack este o suită de produse open-source care lucrează împreună
+pentru a colecta, stoca, căuta, analiza și vizualiza datele de log și
+metrici provenite de la diferite aplicații și sisteme. ELK este compus din
+trei componente principale: Elasticsearch (motor de cautare si analiza),
+Logstash (server de procesare si colectare a datelor) și Kibana (interfata
+web pentru vizualizarea si analiza datelor).
+
+    GitHub este o platformă web de găzduire și colaborare pentru proiecte
+de dezvoltare software bazate pe sistemul de control al versiunilor. Git
+este un sistem de control al versiunilor distribuit, care urmărește
+modificările efectuate în codul sursă și facilitează colaborarea între
+dezvoltatori.
+
+    Intr-o arhitectură tipică, microserviciile (cum ar fi aplicația de
+magazin online, Keycloak și Adminer) comunică între ele prin intermediul
+Kong API Gateway. Datele de log și metricile sunt colectate și analizate
+de ELK Stack, iar gestionarea containerelor Docker este facilitată de
+Portainer. Github este utilizat pentru a gestiona codul sursă și
+colaborarea între echipe.
