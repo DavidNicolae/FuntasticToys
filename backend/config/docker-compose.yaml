@@ -1,10 +1,12 @@
 version: "3.9"
 services:
   funtastictoys-db:
-    image: postgres:14
+    build: ./database
     restart: always
     environment:
       POSTGRES_PASSWORD: admin
+      POSTGRES_USER: admin
+      POSTGRES_DB: funtastictoys
 
   adminer:
     image: adminer:4-standalone
