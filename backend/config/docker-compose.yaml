@@ -1,0 +1,13 @@
+version: "3.9"
+services:
+  funtastictoys-db:
+    image: postgres:14
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: admin
+
+  adminer:
+    image: adminer:4-standalone
+    restart: always
+    ports:
+      - 8080:8080
