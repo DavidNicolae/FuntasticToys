@@ -6,7 +6,6 @@ services:
     environment:
       POSTGRES_PASSWORD: admin
       POSTGRES_USER: admin
-      POSTGRES_DB: funtastictoys
 
   adminer:
     image: adminer:4-standalone
