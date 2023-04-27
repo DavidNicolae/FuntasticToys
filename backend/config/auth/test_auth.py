@@ -27,6 +27,10 @@ def test_login():
     print(response.status_code)  # should output 200 if used has been registered
     print(response.json())  # should output a JWT token
     
+def test_logout():
+    url = 'http://localhost:5000/logout'
+    # should get token here
+
 if __name__ == '__main__':
     test_register()
     test_login()

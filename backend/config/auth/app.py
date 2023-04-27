@@ -70,6 +70,10 @@ def login():
     # generate a new JWT token for the user
     token = user.generate_token()
 
+    # update the user's active_token field with the new token
+    user.active_token = token
+    db.session.commit()
+
     return jsonify(token=token), 200
 
 @app.route('/protected')
@@ -81,6 +85,10 @@ def protected():
 @app.route('/logout')
 @jwt_required()
 def logout():
+    # not tested yet
+    current_user = User.query.filter_by(full_name=get_jwt_identity()).first()
+    current_user.active_token = ''
+    db.session.commit()
     unset_jwt_cookies()
     return jsonify(message='User logged out successfully!'), 200
 
