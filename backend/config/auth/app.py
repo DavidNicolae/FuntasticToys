@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, make_response
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_jwt_extended import JWTManager, jwt_required, create_access_token, get_jwt_identity, unset_jwt_cookies
@@ -82,15 +82,21 @@ def protected():
     username = get_jwt_identity()
     return jsonify(message=f'You are authorized to access this resource as {username}'), 200
 
-@app.route('/logout')
+@app.route('/logout', methods=['POST'])
 @jwt_required()
 def logout():
-    # not tested yet
-    current_user = User.query.filter_by(full_name=get_jwt_identity()).first()
-    current_user.active_token = ''
-    db.session.commit()
-    unset_jwt_cookies()
-    return jsonify(message='User logged out successfully!'), 200
+    token = request.json['token']
+    current_user = User.query.filter_by(active_token=token).first()
+    if current_user:
+        current_user.active_token = ''
+        db.session.commit()
+
+        # create a response object manually
+        response = make_response(jsonify(message='User logged out successfully!'))
+        unset_jwt_cookies(response)
+        return response, 200
+    else:
+        return jsonify(message='User not found'), 404
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
