@@ -4,11 +4,23 @@ services:
     build: ./database
     restart: always
     environment:
-      POSTGRES_PASSWORD: admin
       POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: funtastictoys
+    ports:
+      - 5432:5432
 
   adminer:
     image: adminer:4-standalone
     restart: always
     ports:
       - 8080:8080
+  
+  auth:
+    build: ./auth
+    ports:
+      - 5000:5000
+    environment:
+      - FLASK_APP=app
+    depends_on:
+      - funtastictoys-db
