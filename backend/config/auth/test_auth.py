@@ -37,8 +37,20 @@ def test_logout():
     
     print(response.status_code)
     print(response.json())
+    
+def test_protected():
+    url = 'http://localhost:5000/protected'
+    #data = {'token':''}
+    data = test_login()
+    token = data['token']
+    
+    response = requests.get(url, json=data, headers={"Authorization": f"Bearer {token}"})
+
+    print(response.status_code)
+    print(response.text)
 
 if __name__ == '__main__':
-    test_register()
-    test_login()
-    test_logout()
+    #test_register()
+    #test_login()
+    #test_logout()
+    test_protected()
