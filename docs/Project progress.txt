@@ -1,0 +1,11 @@
+TODO:
+1. existența și integrarea celor minim 3 servicii proprii (0.9p)
+4. existența și integrarea Portainer sau a unui serviciu similar (0.6p)
+5. utilizarea Docker și rularea într-un cluster Docker Swarm (0.7p)
+7. existența și integrarea unui sistem de logging sau monitorizare, cu dashboard pentru
+observabilitate (0.5p)
+
+DONE:
+2. existența și integrarea unui serviciu de baze de date (0.3p)
+3. existența și integrarea unui serviciu de utilitar DB (0.3p)
+6. existența și integrarea Kong sau a unui serviciu similar (Flask) (0.7p)
