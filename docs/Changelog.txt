@@ -1,0 +1,34 @@
+# Changelog
+
+All notable changes to FuntasticToys project will be documented in this file.
+
+# Initial push to main:
+	Add application structure                   				- George Lazureanu
+	Refactor to english		                    				- George Lazureanu
+	Add application team members to docs						- David Mantu
+	Add app description											- David Mantu
+	Update app description										- David Mantu
+	
+# main release 1.1:
+	Update documentation	                    				- George Lazureanu
+	Refactor application arhitecture							- George Lazureanu
+	Add database schema png										- George Lazureanu
+	Add postgressql and adminer using docker    				- George Lazureanu
+	Add postgres script for data consistency for consistency	- George Lazureanu
+	for consistency between distributed locations
+	Customize postgres runtime in docker compose				- George Lazureanu
+	
+# main release 1.2:
+	Add gitignore												- David Mantu
+	Add authorization service and integrated with docker		- David Mantu
+	Add JWT authentification using existing database			- David Mantu
+	Create authentification test module for automated testing	- David Mantu
+	Add authorization token to database entry					- Andrei Stan
+	Add and test logout functionality							- Andrei Stan
+	Add protected route											- Andrei Stan
+	Add first page for login/register users                     - Andreea Nistor
+    Add verifications for each posible mistakes in register     - Andreea Nistor
+    Add conection between log/reg page and carousel page        - Andreea Nistor
+    Add slider for popular toys                                 - Andreea Nistor
+    Add list of all toys                                        - Andreea Nistor
+	
