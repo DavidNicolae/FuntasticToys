@@ -38,6 +38,15 @@ class Product_list(db.Model):
 	qty = db.Column(db.Integer, unique=False, nullable=False)
 	price = db.Column(db.Double,  unique=False, nullable=False)
 
+class Product(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	description = db.Column(db.String(100), index=True, unique=False, nullable=False)
+	photo_src = db.Column(db.String(100), index=True, unique=False, nullable=False)
+	name = db.Column(db.String(100), index=True, unique=False, nullable=False)
+	qty_stock = db.Column(db.Integer, unique=False, nullable=False)
+	qty_sold = db.Column(db.Integer, unique=False, nullable=False)
+	price = db.Column(db.Double,  unique=False, nullable=False)
+
 @app.route('/test')
 def test_route():
     return jsonify(message='This is a test message')
@@ -139,6 +148,23 @@ def get_product_list(order_id):
 			"price": item.price
 		}
 		for item in product_list
+	]
+	return jsonify(json_list = json_list)
+
+@app.route('/get_all_products', methods=['GET'])
+def get_all_products():
+	all_products = Product.query.all()
+	json_list = [
+		{
+			"id": item.id,
+			"description": item.description,
+			"photo_src": item.photo_src,
+			"name": item.name,
+			"qty_stock": item.qty_stock,
+			"qty_sold": item.qty_sold,
+			"price": item.price
+		}
+		for item in all_products
 	]
 	return jsonify(json_list = json_list)
 
