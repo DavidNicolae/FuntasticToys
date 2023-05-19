@@ -31,6 +31,12 @@ class User(db.Model):
 
 	def generate_token(self):
 		return create_access_token(identity=self.full_name)
+	
+class Product_list(db.Model):
+	product_id = db.Column(db.Integer, primary_key=True)
+	order_id = db.Column(db.Integer, primary_key=True)
+	qty = db.Column(db.Integer, unique=False, nullable=False)
+	price = db.Column(db.Double,  unique=False, nullable=False)
 
 @app.route('/test')
 def test_route():
@@ -41,8 +47,10 @@ def register():
 	full_name = request.json['full_name']
 	mail = request.json['mail']
 	password = request.json['password']
+	if ('active_token' not in request.json):
+		active_token = ''
 	active_token = request.json['active_token']
-	role = request.json['role']
+	role = 'user'
 	address = request.json['address']
 	
 	# check if the username is available
@@ -105,6 +113,34 @@ def logout():
 		return response, 200
 	else:
 		return jsonify(message='User not found'), 404
+	
+@app.route('/add_product', methods=['POST'])
+def add_product():
+	product_id = request.json['product_id']
+	order_id = 1
+	qty = request.json['qty']
+	price = request.json['price']
+
+	product = Product_list(product_id = product_id , order_id = order_id, qty = qty, price = price)
+	db.session.add(product)
+	db.session.commit()
+
+	return jsonify(message='Product registered successfully!'), 201
+
+@app.route('/get_product_list/<order_id>', methods=['GET'])
+def get_product_list(order_id):
+	order_id = 1
+	product_list = Product_list.query.filter_by(order_id=order_id).all()
+	json_list = [
+		{
+			"product_id": item.product_id,
+			"order_id": item.order_id,
+			"qty": item.qty,
+			"price": item.price
+		}
+		for item in product_list
+	]
+	return jsonify(json_list = json_list)
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0', port=5000)
