@@ -14,38 +14,28 @@
 		<link rel="stylesheet" href="/src/lib/fontawesome.css" />
 		<link rel="stylesheet" href="/src/css/carousel.css" />
 		<link rel="stylesheet" href="/src/css/spinner.css" />
+		<link rel="stylesheet" href="/src/css/modal.css" />
+		<link rel="stylesheet" href="/src/css/nav.css" />
+
 		<script src="/src/lib/swiper.js" defer></script>
 		<script src="/dist/js/carousel.js" defer></script>
+
 		<title>Toy Store</title>
 	</head>
 	<body>
+		<nav class="navbar">
+			<a class="navbar-cart" href="#">
+				<i class="fas fa-shopping-cart"></i>
+				<span class="cart-total" id="productsInCart">0</span>
+				<ul class="cart-container"></ul>
+			</a>
+		</nav>
 		<section class="popular-toys">
 			<h2>Popular</h2>
 			<div class="swiper">
 				<div class="swiper-wrapper"></div>
 			</div>
 		</section>
-
-		<!-- Search Toys -->
-		<section class="search">
-			<div class="container">
-				<div id="alert"></div>
-				<form action="/search.html" class="search-form">
-					<div class="search-flex">
-						<input
-							type="text"
-							name="search-term"
-							id="search-term"
-							placeholder="Enter search term"
-						/>
-						<button class="btn" type="submit">
-							<i class="fas fa-search"></i>
-						</button>
-					</div>
-				</form>
-			</div>
-		</section>
-
 		<!-- All Toys-->
 		<section class="container">
 			<h2>All toys</h2>
