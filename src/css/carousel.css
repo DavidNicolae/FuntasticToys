@@ -7,7 +7,7 @@
 }
 
 :root {
-	--color-background: #548cff;
+	--color-background: #56baed;
 	--color-search: #ffe400;
 	--color-card: #ff5f5f;
 }
@@ -15,6 +15,7 @@
 body {
 	font-family: 'Poppins', sans-serif;
 	font-size: 16px;
+	width: 100%;
 	background: var(--color-background);
 	color: #fff;
 	overflow-x: hidden;
@@ -36,7 +37,9 @@ ul {
 .text-secondary {
 	color: var(--color-search);
 }
-
+.no-display {
+	display: none;
+}
 .active {
 	color: var(--color-search);
 	font-weight: 700;
@@ -56,7 +59,9 @@ ul {
 	background: transparent;
 	transition: all 0.3s ease-in-out;
 }
-
+.cursor:hover {
+	cursor: pointer;
+}
 .btn:hover {
 	background: var(--color-search);
 	color: #000;
@@ -139,7 +144,7 @@ ul {
 .card:hover {
 	transform: scale(1.05);
 	transition: all 0.5s ease-in-out;
-	background: #0a4b8f;
+	background: #39ace7;
 }
 
 /* Footer */
@@ -180,8 +185,11 @@ ul {
 
 section.popular-toys {
 	padding: 60px;
-	background: url('/src/imgs/background.jpeg') no-repeat;
-	opacity: 08;
+	background: url('/src/imgs/background.jpeg');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	opacity: 0.9;
 }
 
 section h2 {
