@@ -6,6 +6,7 @@ const myFormSwitch = document.querySelector('.form-switch');
 const myIcon = document.querySelector('.icon');
 const myWrongPassAlert = document.querySelector('#wrong_pass_alert');
 myWrongPassAlert.style.color = 'red';
+let currForm = 'login';
 
 const loginForm = `<form class="form-switch">
 <div class="email">
@@ -13,7 +14,7 @@ const loginForm = `<form class="form-switch">
 		type="text"
 		id="email"
 		name="email"
-		placeholder="Email"
+		placeholder="Mail"
 		required
 	/>
 </div>
@@ -22,7 +23,7 @@ const loginForm = `<form class="form-switch">
 		type="text"
 		id="password"
 		name="password"
-		placeholder="Password"
+		placeholder="Parolă"
 		required
 	/>
 </div>
@@ -39,7 +40,16 @@ const registerForm = `<form class="form-switch">
 		type="text"
 		id="full-name"
 		name="name"
-		placeholder="Full Name"
+		placeholder="Nume Complet"
+		required
+	/>
+</div>
+<div class="address">
+	<input
+		type="text"
+		id="address"
+		name="name"
+		placeholder="Adresă"
 		required
 	/>
 </div>
@@ -48,7 +58,7 @@ const registerForm = `<form class="form-switch">
 		type="text"
 		id="email"
 		name="email"
-		placeholder="Email"
+		placeholder="Mail"
 		required
 	/>
 </div>
@@ -57,25 +67,24 @@ const registerForm = `<form class="form-switch">
 		type="text"
 		id="password"
 		name="password"
-		placeholder="Password"
+		placeholder="Parolă"
 		required
 	/>
 	<input
 		type="text"
 		id="confirm-password"
 		name="confirm-password"
-		placeholder="Confirm Password"
+		placeholder="Confirmă Parola"
 		required
 	/>
 </div>
 <span id="wrong_pass_alert"></span>
 <div>
 	<button class="cursor submit submit-button" type="submit">
-		Register
+		Înregistrează
 	</button>
 </div>
 </form>`;
-let currForm = 'login';
 const iconForm = `<div class=" icon">
 <img
 	src="/src/imgs/vroomvrom.jpeg"

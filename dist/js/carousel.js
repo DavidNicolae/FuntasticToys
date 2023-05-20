@@ -1,12 +1,11 @@
+const allToys = document.querySelector('#all-toys');
+const navbarCart = document.querySelector('.navbar-cart');
+const cartContainer = document.querySelector('.cart-container');
+let cartPressed = false;
+let currCartCount = 0;
 const global = {
 	currentPage: window.location.pathname,
-	search: {
-		term: '',
-		type: '',
-		page: 1,
-		totalPages: 1,
-		totalResults: 0,
-	},
+
 	api: {
 		// Register your key at https://www.themoviedb.org/settings/api and enter here
 		// Only use this for development or very small projects. You should store your key and make requests from a server
@@ -16,65 +15,70 @@ const global = {
 };
 // Display 20 toys
 async function displayAllToys() {
-	const { results } = await fetchAPIData('movie/popular');
-
-	results.forEach((movie) => {
+	// const { results } = await fetchAPIData('');
+	totalToys = 20;
+	for (let i = 0; i < totalToys; i++) {
 		const div = document.createElement('div');
-		div.classList.add('card');
 		div.innerHTML = `
-          <a href="movie-details.html?id=${movie.id}">
-            ${
-				movie.poster_path
-					? `<img
+		<div class = "card cursor">
+          <div>
+            <img
               src="/src/imgs/no-toy.jpeg"
               class="card-img-top"
-              alt="${movie.title}"
-            />`
-					: `<img
-            src="../images/no-image.jpg"
-            class="card-img-top"
-            alt="${movie.title}"
-          />`
-			}
-          </a>
-          <div class="card-body">
-            <h5 class="card-title">No toy shefilor</h5>
-            <p class="card-text">
-            </p>
-          </div>
+            />
+        	</div>
+          	<div class="card-body">
+            	<h5 class="card-title">No toy shefilor</h5>
+            	<p class="card-text"> </p>
+          	</div>
+		</div>
+			<span class="close">&times;</span>	
+			<div class="modal">
+				<div class="image-container">
+					<img  src="/src/imgs/no-toy.jpeg">
+				</div>
+				<div class="info-container">
+  					<h2 class="title">Product Title</h2>
+  					<p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed condimentum dui nec lectus commodo, et pretium massa convallis.</p>
+ 					<p class="price">${i}.99$</p>
+ 				       <button class="add-to-cart">Add to Cart</button>
+     			</div>
+			</div>
         `;
+		const modal = div.querySelector('.modal');
+		const closeModal = div.querySelector('.close');
+		const card = div.querySelector('.card');
+		const addToCart = div.querySelector('.add-to-cart');
+		card.addEventListener('click', myZoom(modal, closeModal, 'flex'));
+		closeModal.addEventListener('click', myZoom(modal, closeModal, 'none'));
 
-		document.querySelector('#all-toys').appendChild(div);
-	});
-}
+		addToCart.addEventListener('click', () => {
+			currCartCount++;
+			const cartTotal = document.querySelector('.cart-total');
+			cartTotal.textContent = currCartCount;
+			const cartItem = document.createElement('li');
+			cartItem.innerHTML = `<li class="cart-item ">
+			<div class="product-image">
+			  <img src="/src/imgs/no-toy.jpeg" alt="Product Image">
+			</div>
+			<div class="product-details">
+			  <h3 class="product-name">Product Name</h3>
+			  <p class="product-price">${currCartCount}.99$</p>
+			</div>
+		  </li>`;
+			cartContainer.appendChild(cartItem);
+			console.log(addToCart);
+		});
 
-async function search() {
-	const queryString = window.location.search;
-	const urlParams = new URLSearchParams(queryString);
-
-	global.search.type = urlParams.get('type');
-	global.search.term = urlParams.get('search-term');
-
-	if (global.search.term !== '' && global.search.term !== null) {
-		const { results, total_pages, page, total_results } =
-			await searchAPIData();
-
-		global.search.page = page;
-		global.search.totalPages = total_pages;
-		global.search.totalResults = total_results;
-
-		if (results.length === 0) {
-			showAlert('No results found');
-			return;
-		}
-
-		displaySearchResults(results);
-
-		document.querySelector('#search-term').value = '';
-	} else {
-		showAlert('Please enter a search term');
+		allToys.appendChild(div);
 	}
 }
+const myZoom = (myModal, myCloseModal, type) => {
+	return function () {
+		myModal.style.display = type;
+		myCloseModal.style.display = type;
+	};
+};
 
 async function displaySlider() {
 	const { results } = await fetchAPIData('movie/now_playing');
@@ -122,42 +126,6 @@ function initSwiper() {
 	});
 }
 
-// Fetch data from TMDB API
-async function fetchAPIData(endpoint) {
-	const API_KEY = global.api.apiKey;
-	const API_URL = global.api.apiUrl;
-
-	showSpinner();
-
-	const response = await fetch(
-		`${API_URL}${endpoint}?api_key=${API_KEY}&language=en-US`
-	);
-
-	const data = await response.json();
-
-	hideSpinner();
-
-	return data;
-}
-
-// Make Request To Search
-async function searchAPIData() {
-	const API_KEY = global.api.apiKey;
-	const API_URL = global.api.apiUrl;
-
-	showSpinner();
-
-	const response = await fetch(
-		`${API_URL}search/${global.search.type}?api_key=${API_KEY}&language=en-US&query=${global.search.term}&page=${global.search.page}`
-	);
-
-	const data = await response.json();
-
-	hideSpinner();
-
-	return data;
-}
-
 function showSpinner() {
 	document.querySelector('.spinner').classList.add('show');
 }
@@ -181,13 +149,23 @@ function init() {
 	switch (global.currentPage) {
 		case '/':
 		case '/dist/html/carouselpage.html':
-			displaySlider();
+			// displaySlider();
 			displayAllToys();
-			break;
-		case '/search.html':
-			search();
 			break;
 	}
 }
 
-document.addEventListener('DOMContentLoaded', init);
+const mainEvents = () => {
+	document.addEventListener('DOMContentLoaded', init);
+	navbarCart.addEventListener('click', (e) => {
+		e.preventDefault();
+		if (!cartPressed) {
+			cartPressed = true;
+			cartContainer.style.display = 'flex';
+		} else {
+			cartPressed = false;
+			cartContainer.style.display = 'none';
+		}
+	});
+};
+mainEvents();

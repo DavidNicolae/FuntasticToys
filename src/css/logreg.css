@@ -4,15 +4,15 @@
 
 html {
 	background-image: url('/src/imgs/background.jpeg');
+	background-size: cover;
+	background-position: center;
 	background-repeat: no-repeat;
-	background-attachment: fixed;
 	opacity: 0.9;
 }
 
 body {
 	font-family: 'Poppins', sans-serif;
 	height: 100vh;
-	/* background-color: #56baed; */
 }
 
 a {
@@ -61,22 +61,13 @@ h2 {
 	text-align: center;
 }
 
-#formFooter {
-	background-color: #f6f6f6;
-	border-top: 1px solid #dce8f1;
-	padding: 25px;
-	text-align: center;
-	-webkit-border-radius: 0 0 10px 10px;
-	border-radius: 0 0 10px 10px;
-}
-
 /* TABS */
 h2.inactive {
 	color: #cccccc;
 }
 h2.active {
 	color: #0d0d0d;
-	border-bottom: 2px solid #5fbae9;
+	border-bottom: 2px solid #56baed;
 }
 
 /* FORM TYPOGRAPHY*/
