@@ -9,12 +9,17 @@ services:
       POSTGRES_DB: funtastictoys
     ports:
       - 5432:5432
+    networks:
+      - backend
+      - database
 
   adminer:
     image: adminer:4-standalone
     restart: always
     ports:
       - 8080:8080
+    networks:
+      - database
   
   auth:
     build: ./auth
@@ -24,3 +29,10 @@ services:
       - FLASK_APP=app
     depends_on:
       - funtastictoys-db
+    networks:
+      - backend
+
+networks:
+  frontend:
+  backend:
+  database:
