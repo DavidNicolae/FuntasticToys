@@ -25,8 +25,8 @@ services:
     networks:
       - database
   
-  backend-api:
-    build: ./backend
+  auth:
+    build: ./auth
     ports:
       - 5000:5000
     environment:
