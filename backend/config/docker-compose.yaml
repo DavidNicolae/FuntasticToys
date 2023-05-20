@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   funtastictoys-db:
-    image: funtastictoys
+    image: clokerul/funtastictoys
     build: ./database
     restart: always
     environment:
@@ -34,7 +34,7 @@ services:
           condition: on-failure
   
   auth:
-    image: backendinterface
+    image: clokerul/backendinterface
     build: ./auth
     ports:
       - 5000:5000
