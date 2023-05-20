@@ -12,6 +12,10 @@ services:
     networks:
       - backend
       - database
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: on-failure
 
   adminer:
     image: adminer:4-standalone
@@ -31,6 +35,10 @@ services:
       - funtastictoys-db
     networks:
       - backend
+    deploy:
+      replicas: 3
+      restart_policy:
+        condition: on-failure
 
 networks:
   frontend:
