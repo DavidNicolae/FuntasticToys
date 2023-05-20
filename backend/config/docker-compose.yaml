@@ -1,6 +1,7 @@
 version: "3.9"
 services:
   funtastictoys-db:
+    image: funtastictoys
     build: ./database
     restart: always
     environment:
@@ -33,6 +34,7 @@ services:
           condition: on-failure
   
   auth:
+    image: backendinterface
     build: ./auth
     ports:
       - 5000:5000
