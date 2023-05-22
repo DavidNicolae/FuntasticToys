@@ -82,29 +82,6 @@ VALUES
     ('Educational globe for children', 'globe1.jpg', 'Educational Globe', 75, 0, 30.00),
     ('Classic wooden toy car', 'woodencar1.jpg', 'Wooden Toy Car', 150, 0, 10.00);
 
-INSERT INTO "user"("full_name", "mail", "password", "active_token", "role", "address") 
-VALUES 
-    ('James T. Kirk', 'james.kirk@mail.com', 'password123', 'token1', 'customer', '1701 Enterprise Dr, San Francisco, CA'),
-    ('Jean-Luc Picard', 'jean.picard@mail.com', 'password456', 'token2', 'customer', '1701 Federation Pl, San Francisco, CA'),
-    ('Kathryn Janeway', 'kathryn.janeway@mail.com', 'password789', 'token3', 'customer', '74656 Voyager St, San Francisco, CA'),
-    ('Benjamin Sisko', 'benjamin.sisko@mail.com', 'ds9rules', 'token4', 'customer', '46531 DS9 Dr, San Francisco, CA'),
-    ('Jonathan Archer', 'jonathan.archer@mail.com', 'password321', 'token5', 'customer', '2151 Enterprise Ln, San Francisco, CA'),
-    ('Spock', 'spock@mail.com', 'logicalpass', 'token6', 'customer', '1701 Vulcan Way, San Francisco, CA'),
-    ('Deanna Troi', 'deanna.troi@mail.com', 'empathetic', 'token7', 'customer', '1701 Betazed Blvd, San Francisco, CA'),
-    ('Beverly Crusher', 'beverly.crusher@mail.com', 'medicalpass', 'token8', 'customer', '1701 Medical Pl, San Francisco, CA'),
-    ('Geordi La Forge', 'geordi.laforge@mail.com', 'engineering123', 'token9', 'customer', '1701 Engineering St, San Francisco, CA'),
-    ('Data', 'data@mail.com', 'androidpass', 'token10', 'customer', '1701 AI Ln, San Francisco, CA'),
-    ('Worf', 'worf@mail.com', 'klingon123', 'token11', 'customer', '1701 Klingon Rd, San Francisco, CA'),
-    ('William Riker', 'william.riker@mail.com', 'firstofficer', 'token12', 'customer', '1701 First St, San Francisco, CA'),
-    ('Julian Bashir', 'julian.bashir@mail.com', 'ds9medic', 'token13', 'customer', '46531 Medical St, San Francisco, CA'),
-    ('Jadzia Dax', 'jadzia.dax@mail.com', 'trillpass', 'token14', 'customer', '46531 Trill Ln, San Francisco, CA'),
-    ('Quark', 'quark@mail.com', 'profit123', 'token15', 'customer', '46531 Ferengi Blvd, San Francisco, CA'),
-    ('Elanna Torres', 'belanna.torres@mail.com', 'voyengi', 'token16', 'customer', '74656 Engineering Dr, San Francisco, CA'),
-    ('Seven of Nine', 'seven@mail.com', 'borgpass', 'token17', 'customer', '74656 Borg Pl, San Francisco, CA'),
-    ('T Pol', 'tpol@mail.com', 'vulcanpass', 'token18', 'customer', '2151 Vulcan St, San Francisco, CA'),
-    ('Hoshi Sato', 'hoshi.sato@mail.com', 'linguist123', 'token19', 'customer', '2151 Linguist Ln, San Francisco, CA'),
-    ('Malcolm Reed', 'malcolm.reed@mail.com', 'security321', 'token20', 'customer', '2151 Security Blvd, San Francisco, CA');
-
 INSERT INTO "user" ("full_name", "mail", "password", "active_token", "role", "address")
 VALUES ('Test User', 'test@mail.com', 'nopass123', 'llllllllllllllllll', 'admin', '1118 W Park Ave');
 

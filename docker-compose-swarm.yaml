@@ -1,0 +1,81 @@
+version: "3.9"
+services:
+  funtastictoys-db:
+    image: clokerul/funtastictoys
+    build: ./backend/config/database
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: funtastictoys
+    ports:
+      - 5432:5432
+    networks:
+      - backend
+      - database
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+      restart_policy:
+        condition: on-failure
+
+  adminer:
+    image: adminer:4-standalone
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - database
+    deploy:
+      replicas: 1
+      restart_policy:
+          condition: on-failure
+  
+  auth:
+    image: clokerul/backendinterface
+    build: ./backend/config/auth
+    ports:
+      - 5000:5000
+    environment:
+      - FLASK_APP=app
+    depends_on:
+      - funtastictoys-db
+    networks:
+      - backend
+    deploy:
+      replicas: 3
+      restart_policy:
+          condition: on-failure
+
+  viteproj:
+      build: ./frontend/config/vite-project
+      ports:
+          - 8000:8000
+      environment:
+          - NODE_ENV=production
+      networks:
+          - frontend
+      deploy:
+          replicas: 1
+          restart_policy:
+              condition: on-failure
+
+  portainer:
+    image: portainer/portainer-ce
+    command: -H unix:///var/run/docker.sock
+    restart: always
+    ports:
+      - 9000:9000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+
+networks:
+  frontend:
+  backend:
+  database:
+
+volumes:
+  portainer_data:
